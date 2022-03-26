@@ -9,8 +9,9 @@ const TodoSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  // 앞으로 timestamp 줄때 이런식으로 하자
   timestamp: {
-    tyep: String,
+    type: String,
     default: Date.now(),
   },
 });
