@@ -12,7 +12,21 @@ app.use(cors());
 
 app.get("/todos", async (req, res) => {
   const todos = await TodoModel.find();
-  res.send("hello");
+  res.json(todos);
+});
+
+app.post("/todo", (req, res) => {
+  const todo = new TodoModel({
+    text: req.body.text,
+  });
+
+  todo.save();
+  res.json(todo);
+});
+
+app.delete("/todo/:id", async (req, res) => {
+  const result = await TodoModel.findByIdAndDelete(req.params.id);
+  res.json(result);
 });
 
 app.listen(
