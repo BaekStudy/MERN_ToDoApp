@@ -29,6 +29,13 @@ app.delete("/todo/:id", async (req, res) => {
   res.json(result);
 });
 
+app.put("/todo/:id/complete", async (req, res) => {
+  const todo = await TodoModel.findById(req.params.id);
+  todo.complete = !todo.complete;
+  await todo.save();
+  res.json(todo);
+});
+
 app.listen(
   process.env.PORT,
   console.log(`http://localhost:${process.env.PORT}`)
